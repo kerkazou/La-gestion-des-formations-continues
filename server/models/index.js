@@ -44,4 +44,23 @@ db.role.estimatedDocumentCount((err, count) => {
     }
 });
 
+const Administrator = async () => {
+    const role_admin = await db.role.findOne({ name: 'Administrator' })
+    const find_admin = await db.user.findOne({ email: 'manager@gmail.com' })
+    const hash = await bcrypt.hash('111', salt)
+    if (!find_admin) {
+        new db.user({
+            username: "manager",
+            email: "manager@gmail.com",
+            password: hash,
+            roles: role_admin._id,
+        })
+            .save(err => {
+                if (err) { console.log("error", err) }
+                console.log("'Manager' added to Users collection");
+            });
+    }
+}
+Administrator();
+
 module.exports = db;
