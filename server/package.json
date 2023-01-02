@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^8.5.1",
+    "local-storage": "^2.0.0",
+    "mongoose": "^6.7.2",
+    "nodejs": "^0.0.0",
+    "nodemailer": "^6.8.0",
+    "nodemon": "^2.0.20"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}
