@@ -9,14 +9,14 @@ require('./models')
 
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
-app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'))
 
 // Routers
 const authRoutes = require('./routes/authRoutes')
 app.use('/api/auth', authRoutes)
-// const userRoutes = require('./routes/userRoutes')
-// app.use('/api/user', userRoutes)
+const formationRoutes = require('./routes/formationRoutes')
+app.use('/formation', formationRoutes)
 app.all('*', (req, res) => {
   res.send('Page not found');
 })

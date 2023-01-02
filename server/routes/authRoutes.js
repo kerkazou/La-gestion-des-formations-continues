@@ -7,7 +7,7 @@ const permission = require('../middlewares/Permission');
 
 
 router.post('/login', permission.authPermission, tryCatch(authController.login));
-router.post('/ddd-Employee', permission.userPermission, tryCatch(authController.AddEmployee));
+router.post('/ddd-employee', permission.userPermission, tryCatch(authController.AddEmployee));
 router.get('/logout',permission.userPermission, tryCatch(authController.logout));
 
 router.use(errorHandller);
