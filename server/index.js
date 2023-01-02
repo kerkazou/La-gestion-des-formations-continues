@@ -13,18 +13,19 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'))
 
 // Routers
+const { userPermission, authPermission } = require('./middlewares/Permission');
 const authRoutes = require('./routes/authRoutes')
-app.use('/api/auth', authRoutes)
-const formationRoutes = require('./routes/formationRoutes')
-app.use('/formation', formationRoutes)
+app.use('/api/auth', authPermission, authRoutes)
+const Routes = require('./routes/Routes')
+app.use('/', userPermission, Routes)
 app.all('*', (req, res) => {
   res.send('Page not found');
 })
 
 // Port
 const port = process.env.PORT || 1112;
-app.listen(port, ()=> 
-    console.log(`Server running on http://localhost:${port}`)
+app.listen(port, () =>
+  console.log(`Server running on http://localhost:${port}`)
 );
 
 module.exports = app
