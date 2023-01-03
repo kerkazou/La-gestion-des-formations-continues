@@ -12,12 +12,6 @@ const User = mongoose.model(
         ref: "Role"
       }
     ],
-    formation: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Formation"
-      }
-    ],
     organisme: [
       {
         type: mongoose.Schema.Types.ObjectId,
