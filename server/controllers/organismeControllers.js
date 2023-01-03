@@ -25,7 +25,18 @@ const AddOrganisme = async (req, res) => {
     res.json({ message: 'Successfully, Organisme is created' })
 }
 
+const UpdateOrganisme = async (req, res) => {
+    const name = req.body.name
+    const id = req.params.id
+    const find_organisme = await Organisme.findById(id)
+    if (!find_organisme) throw Error('Organisme not existed')
+    const update_organisme = await Organisme.updateOne({ id }, { name: name })
+    if (!update_organisme) throw Error('Organisme not updated try again')
+    res.json({ message: 'Successfully, Organisme is updated' })
+}
+
 module.exports = {
     GetOrganisme,
-    AddOrganisme
+    AddOrganisme,
+    UpdateOrganisme
 }

@@ -14,12 +14,14 @@ router.get('/', tryCatch(statistiqueControllers.Statistique));
 // Formation
 router.get('/formations', tryCatch(formationControllers.GetFormations));
 router.post('/add-formation', uploadImage.single('image'), tryCatch(formationControllers.AddFormation));
+router.put('/update-formation/:id', uploadImage.single('image'), tryCatch(formationControllers.UpdateFormation));
 // Employees
 router.get('/employees', tryCatch(employeeControllers.GetEmployees));
 router.post('/add-employee', tryCatch(employeeControllers.AddEmployee));
 // Organisme
 router.get('/organisme', tryCatch(organismeControllers.GetOrganisme));
 router.post('/add-organisme', tryCatch(organismeControllers.AddOrganisme));
+router.put('/update-organisme/:id', tryCatch(organismeControllers.UpdateOrganisme));
 // Formation Employee
 router.get('/formation', tryCatch(user_formationControllers.GetFormation));
 router.post('/formation-employee', tryCatch(user_formationControllers.FormationToEmployee));
