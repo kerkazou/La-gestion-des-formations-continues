@@ -11,6 +11,7 @@ db.user = require("../models/userModal");
 db.role = require("../models/roleModal");
 db.organisme = require("../models/organismeModal");
 db.formation = require("../models/formationModal");
+db.user_formation = require("../models/user_formationModal");
 
 db.role.estimatedDocumentCount((err, count) => {
     if (!err && count != 2) {

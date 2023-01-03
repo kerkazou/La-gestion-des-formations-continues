@@ -12,7 +12,7 @@ const Formation = db.formation;
 const Organisme = db.organisme;
 
 
-const GetEmployee = async (req, res) => {
+const GetEmployees = async (req, res) => {
     const role_employee = await Role.findOne({ name: 'Employee' })
     const find_employee = await User.find({ role: role_employee._id })
         .populate('roles')
@@ -45,6 +45,6 @@ const AddEmployee = async (req, res) => {
 }
 
 module.exports = {
-    GetEmployee,
+    GetEmployees,
     AddEmployee
 }

@@ -10,9 +10,10 @@ const User = db.user;
 const Role = db.role;
 const Formation = db.formation;
 const Organisme = db.organisme;
+const User_formation = db.user_formation;
 
 
-const GetFormation = async (req, res) => {
+const GetFormations = async (req, res) => {
     const find_formation = await Formation.find()
     res.send({find_formation})
 }
@@ -31,6 +32,6 @@ const AddFormation = async (req, res) => {
 }
 
 module.exports = {
-    GetFormation,
+    GetFormations,
     AddFormation
 }
