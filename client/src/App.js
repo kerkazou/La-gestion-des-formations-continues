@@ -1,10 +1,16 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import axios from "axios";
+import Login from "./login/Login"
 
-function App() {
+
+export default function App() {
   return (
-    <div className="App">
-      hello
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/Login" element={<Login />} />
+        <Route path="*" element={'Page not found'} />
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-export default App;
