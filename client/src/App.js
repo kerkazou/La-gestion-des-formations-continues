@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
 import Login from "./login/Login"
 
 
