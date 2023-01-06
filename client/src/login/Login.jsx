@@ -3,8 +3,11 @@ import Input from '../components/Input'
 import Label from '../components/Label'
 import Button from '../components/Button'
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { apiLogin } from "../actions/auth"
 
 export default function Login() {
+
 
     const [inputs, setInputs] = useState([
         { type: 'text', id: 'floatingInput', name: 'email', placeholder: 'Email', label: 'Email address' },
@@ -13,13 +16,18 @@ export default function Login() {
 
     const [login, setLogin] = useState({ email: '', password: '' })
     const onChange = (e) => {
-        const value = e.target.value
+        const value = e.target.value;
         setLogin({ ...login, [e.target.name]: value });
     }
 
+    // const { isLoggedIn } = useSelector(state => state.auth);
+    // const { message } = useSelector(state => state.message);
+
+    const dispatch = useDispatch();
+
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log(login)
+        dispatch(apiLogin(login.email, login.password))
     }
 
     return (
