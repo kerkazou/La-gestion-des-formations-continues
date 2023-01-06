@@ -5,7 +5,6 @@ import AuthService from "../services/auth.service";
 export const apiLogin = (email, password) => (dispatch) => {
     return AuthService.login(email, password)
         .then((data) => {
-            console.log(data.token)
             if (data.token) {
                 dispatch({
                     type: LOGIN_SUCCESS,
