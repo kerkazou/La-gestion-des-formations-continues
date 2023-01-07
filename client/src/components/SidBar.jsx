@@ -15,12 +15,6 @@ export default function SidBar() {
     const dispatch = useDispatch();
     const Logout = () => {
         dispatch(apiLogout())
-            .then(() => {
-                console.log('Logout')
-            })
-            .catch(() => {
-                console.log('Error')
-            })
     }
 
     return (
