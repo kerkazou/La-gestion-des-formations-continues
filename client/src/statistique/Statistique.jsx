@@ -1,16 +1,29 @@
 import './style.css'
 import SidBar from '../components/SidBar';
 import Nav from '../components/Nav';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import UserService from "../services/user.service";
 
 export default function Statistique() {
 
+    let [statistique, setStatistique] = useState([])
+    useEffect(() => {
+        UserService.getStatistique()
+            .then((res) => {
+                setStatistique(res.data)
+                console.log(statistique)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }, []);
+
     const [cards, setCards] = useState([
-        { name: 'Employee', number: 0, icon: 'bi bi-people' },
-        { name: 'Organisme', number: 0, icon: 'bi bi-building' },
-        { name: 'Formation', number: 0, icon: 'bi bi-briefcase' }
+        { name: 'Employee', number: statistique.employee, icon: 'bi bi-people' },
+        { name: 'Organisme', number: statistique.formation, icon: 'bi bi-building' },
+        { name: 'Formation', number: statistique.organisme, icon: 'bi bi-briefcase' }
     ])
 
     if (!useSelector((state) => state.auth.isLoggedIn)) {
@@ -31,7 +44,7 @@ export default function Statistique() {
                                         <div className="card-body d-flex justify-content-between p-3">
                                             <div className='d-flex flex-column justify-content-between'>
                                                 <h4 className="text-sm mb-0 text-uppercase font-weight-bold">{card.name}</h4>
-                                                <h3 className="font-weight-bolder">{card.number}</h3>
+                                                <h3 className="font-weight-bolder">{console.log(statistique, card.number)}</h3>
                                             </div>
                                             <div className='d-flex justify-content-center align-items-center fs-2'>
                                                 <div className='d-flex justify-content-center align-items-center text-light' style={{ 'height': '60px', 'width': '60px', 'borderRadius': '50%', 'background': '#2874A6' }}>
