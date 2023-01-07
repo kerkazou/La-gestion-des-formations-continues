@@ -16,8 +16,8 @@ const User_formation = db.user_formation;
 
 
 const GetFormations = async (req, res) => {
-    const find_formation = await Formation.find()
-    res.send({ find_formation })
+    const formation = await Formation.find()
+    res.send({ formation })
 }
 
 const AddFormation = async (req, res) => {

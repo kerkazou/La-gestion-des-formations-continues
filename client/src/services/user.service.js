@@ -10,8 +10,12 @@ const getStatistique = () => {
 const getEmployee = () => {
   return axios.get(API_URL+'employees');
 };
+const getFormation = () => {
+  return axios.get(API_URL+'formations');
+};
 
 export default {
   getStatistique,
-  getEmployee
+  getEmployee,
+  getFormation
 };
