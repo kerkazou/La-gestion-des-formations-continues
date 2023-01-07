@@ -7,6 +7,11 @@ const getStatistique = () => {
   return axios.get(API_URL);
 };
 
+const getEmployee = () => {
+  return axios.get(API_URL+'employees');
+};
+
 export default {
-  getStatistique
+  getStatistique,
+  getEmployee
 };
