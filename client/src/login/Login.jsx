@@ -5,6 +5,7 @@ import Button from '../components/Button'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { apiLogin } from "../actions/auth"
+import { Navigate } from 'react-router-dom'
 
 export default function Login() {
 
@@ -20,14 +21,14 @@ export default function Login() {
         setLogin({ ...login, [e.target.name]: value });
     }
 
-    // const { isLoggedIn } = useSelector(state => state.auth);
-    // const { message } = useSelector(state => state.message);
-
     const dispatch = useDispatch();
-
     const onSubmit = (e) => {
         e.preventDefault();
         dispatch(apiLogin(login.email, login.password))
+    }
+
+    if (useSelector((state) => state.auth.isLoggedIn)) {
+        return <Navigate to="/" />;
     }
 
     return (
