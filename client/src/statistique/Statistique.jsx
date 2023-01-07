@@ -13,7 +13,6 @@ export default function Statistique() {
         UserService.getStatistique()
             .then((res) => {
                 setStatistique(res.data)
-                console.log(statistique)
             })
             .catch((err) => {
                 console.log(err)
@@ -44,7 +43,7 @@ export default function Statistique() {
                                         <div className="card-body d-flex justify-content-between p-3">
                                             <div className='d-flex flex-column justify-content-between'>
                                                 <h4 className="text-sm mb-0 text-uppercase font-weight-bold">{card.name}</h4>
-                                                <h3 className="font-weight-bolder">{console.log(statistique, card.number)}</h3>
+                                                <h3 className="font-weight-bolder">{card.number}</h3>
                                             </div>
                                             <div className='d-flex justify-content-center align-items-center fs-2'>
                                                 <div className='d-flex justify-content-center align-items-center text-light' style={{ 'height': '60px', 'width': '60px', 'borderRadius': '50%', 'background': '#2874A6' }}>
