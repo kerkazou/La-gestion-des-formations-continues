@@ -21,6 +21,23 @@ export default function Organisme() {
             })
     }, []);
 
+    const [add, setAdd] = useState({ name: '' })
+    const onChange = (e) => {
+        const value = e.target.value
+        setAdd({ ...add, [e.target.name]: value })
+    }
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        UserService.addOrganisme(add)
+            .then((res) => {
+                console.log(res.data.message)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
     if (!useSelector((state) => state.auth.isLoggedIn)) {
         return <Navigate to="/login" />;
     }
@@ -37,6 +54,7 @@ export default function Organisme() {
                             <button type="button" data-bs-toggle="modal" data-bs-target="#add_organisme" className="fs-3 fw-bold border-0 bg-body">
                                 <i className="bi bi-plus-circle-dotted"></i>
                             </button>
+                            <ModalsOrganisme onSubmit={onSubmit} onChange={onChange} value={add.name} />
                         </div>
                         <table className="table table-sm table-responsive text-center">
                             <thead className="fs-5">
@@ -64,7 +82,6 @@ export default function Organisme() {
                     </div>
                 </div>
             </div>
-            <ModalsOrganisme />
         </div>
     );
 }

@@ -1,0 +1,11 @@
+/* body form input {
+    border: none !important;
+    border-bottom: solid 5px var(--color-1) !important;
+    border-left: solid 3px var(--color-1) !important;
+}
+
+body form button[type='submit'] {
+    width: 50%;
+    background-color: var(--color-1);
+    color: var(--white);
+} */

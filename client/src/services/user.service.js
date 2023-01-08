@@ -8,18 +8,23 @@ const getStatistique = () => {
 };
 
 const getEmployee = () => {
-  return axios.get(API_URL+'employees');
+  return axios.get(API_URL + 'employees');
 };
 const getOrganisme = () => {
-  return axios.get(API_URL+'organismes');
+  return axios.get(API_URL + 'organismes');
 };
 const getFormation = () => {
-  return axios.get(API_URL+'formations');
+  return axios.get(API_URL + 'formations');
+};
+
+const addOrganisme = (data) => {
+  return axios.post(API_URL + 'add-organisme', data);
 };
 
 export default {
   getStatistique,
   getEmployee,
   getOrganisme,
-  getFormation
+  getFormation,
+  addOrganisme
 };
