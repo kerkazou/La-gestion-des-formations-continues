@@ -47,7 +47,7 @@ export default function Employee() {
                             </thead>
                             <tbody>
                                 {formations.map((formation, i) => (
-                                    <tr className="item">
+                                    <tr className="item" key={i}>
                                         <td className="col-3"><img className='col-3' src={'http://localhost:1111/'+formation.image} alt={formation.image} /></td>
                                         <td className="col-3">{formation.name}</td>
                                         <td className="col-3">{formation.duration}H</td>

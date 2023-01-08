@@ -21,7 +21,7 @@ export default function Employee() {
                         <div className="d-flex justify-content-between align-items-center px-3 py-2">
                             <span className="fs-4 fw-bold">Organisme</span>
                             <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" className="fs-3 fw-bold border-0 bg-body">
-                                <i class="bi bi-plus-circle-dotted"></i>
+                                <i className="bi bi-plus-circle-dotted"></i>
                             </button>
                         </div>
                         <table className="table table-sm table-responsive text-center">
@@ -38,8 +38,8 @@ export default function Employee() {
                                     <td className="col-3">name</td>
                                     <td className="col-2">
                                         <div className='d-flex gap-3'>
-                                            <i class="bi bi-pen"></i>
-                                            <i class="bi bi-trash3"></i>
+                                            <i className="bi bi-pen"></i>
+                                            <i className="bi bi-trash3"></i>
                                         </div>
                                     </td>
                                 </tr>

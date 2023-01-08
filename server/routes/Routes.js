@@ -19,7 +19,7 @@ router.put('/update-formation/:id', uploadImage.single('image'), tryCatch(format
 router.get('/employees', tryCatch(employeeControllers.GetEmployees));
 router.post('/add-employee', tryCatch(employeeControllers.AddEmployee));
 // Organisme
-router.get('/organisme', tryCatch(organismeControllers.GetOrganisme));
+router.get('/organismes', tryCatch(organismeControllers.GetOrganisme));
 router.post('/add-organisme', tryCatch(organismeControllers.AddOrganisme));
 router.put('/update-organisme/:id', tryCatch(organismeControllers.UpdateOrganisme));
 // Formation Employee

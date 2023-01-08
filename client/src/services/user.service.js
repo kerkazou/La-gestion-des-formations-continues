@@ -10,6 +10,9 @@ const getStatistique = () => {
 const getEmployee = () => {
   return axios.get(API_URL+'employees');
 };
+const getOrganisme = () => {
+  return axios.get(API_URL+'organismes');
+};
 const getFormation = () => {
   return axios.get(API_URL+'formations');
 };
@@ -17,5 +20,6 @@ const getFormation = () => {
 export default {
   getStatistique,
   getEmployee,
+  getOrganisme,
   getFormation
 };

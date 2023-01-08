@@ -13,11 +13,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'))
 
 // Routers
-const { userPermission, authPermission } = require('./middlewares/Permission');
+// const { userPermission, authPermission } = require('./middlewares/Permission');
 const authRoutes = require('./routes/authRoutes')
 app.use('/api/auth', authRoutes)
 const Routes = require('./routes/Routes')
-app.use('/', userPermission, Routes)
+app.use('/', Routes)
 app.all('*', (req, res) => {
   res.send('Page not found');
 })
