@@ -9,6 +9,7 @@ import UserService from "../services/user.service";
 export default function Statistique() {
 
     let [statistique, setStatistique] = useState([])
+    
     useEffect(() => {
         UserService.getStatistique()
             .then((res) => {
@@ -20,9 +21,9 @@ export default function Statistique() {
     }, []);
 
     const [cards, setCards] = useState([
-        { name: 'Employee', number: statistique.employee, icon: 'bi bi-people' },
-        { name: 'Organisme', number: statistique.formation, icon: 'bi bi-building' },
-        { name: 'Formation', number: statistique.organisme, icon: 'bi bi-briefcase' }
+        { name: 'Employee', number: statistique.employee||'-', icon: 'bi bi-people' },
+        { name: 'Organisme', number: statistique.formation||'-', icon: 'bi bi-building' },
+        { name: 'Formation', number: statistique.organisme||'-', icon: 'bi bi-briefcase' }
     ])
 
     if (!useSelector((state) => state.auth.isLoggedIn)) {
