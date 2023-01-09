@@ -24,6 +24,9 @@ const addOrganisme = (data) => {
 const updateOrganisme = (data) => {
   return axios.put(API_URL + 'update-organisme/' + data._id, data);
 };
+const deleteOrganisme = (id) => {
+  return axios.delete(API_URL + 'delete-organisme/' + id);
+};
 
 export default {
   getStatistique,
@@ -31,5 +34,6 @@ export default {
   getOrganisme,
   getFormation,
   addOrganisme,
-  updateOrganisme
+  updateOrganisme,
+  deleteOrganisme
 };

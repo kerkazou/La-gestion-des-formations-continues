@@ -52,6 +52,16 @@ export default function Organisme() {
                 console.log(err)
             })
     }
+    const onDelete = (id, e) => {
+        e.preventDefault();
+        UserService.deleteOrganisme(id)
+            .then((res) => {
+                console.log(res.data.message)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
 
     if (!useSelector((state) => state.auth.isLoggedIn)) {
         return <Navigate to="/login" />;
@@ -87,7 +97,12 @@ export default function Organisme() {
                                         <td className="col-2">
                                             <div className='d-flex gap-3'>
                                                 <i className="bi bi-pen" onClick={() => { setEdite(organisme) }} type="button" data-bs-toggle="modal" data-bs-target="#edite_organisme"></i>
-                                                <i className="bi bi-trash3"></i>
+                                                <div type='button' onClick={(e) => onDelete(organisme._id, e)}>
+                                                    {(organisme.status)
+                                                        ? <i className="bi bi-trash3"></i>
+                                                        : <i className="bi bi-arrow-clockwise"></i>
+                                                    }
+                                                </div>
                                             </div>
                                         </td>
                                     </tr>

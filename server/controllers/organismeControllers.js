@@ -35,8 +35,25 @@ const UpdateOrganisme = async (req, res) => {
     res.json({ message: 'Successfully, Organisme is updated' })
 }
 
+const DeleteOrganisme = async (req, res) => {
+    const id = req.params.id
+    const find_organisme = await Organisme.findById(id)
+    if (!find_organisme) throw Error('Organisme not existed')
+    if (find_organisme.status) {
+        const delete_organisme = await Organisme.updateOne({ _id: id }, { status: false })
+        if (!delete_organisme) throw Error('Organisme not Deleted try again')
+        res.json({ message: 'Successfully, Organisme is Deleted' })
+    }
+    if (!find_organisme.status) {
+        const delete_organisme = await Organisme.updateOne({ _id: id }, { status: true })
+        if (!delete_organisme) throw Error('Organisme not reset try again')
+        res.json({ message: 'Successfully, Organisme is Reset' })
+    }
+}
+
 module.exports = {
     GetOrganisme,
     AddOrganisme,
-    UpdateOrganisme
+    UpdateOrganisme,
+    DeleteOrganisme
 }
