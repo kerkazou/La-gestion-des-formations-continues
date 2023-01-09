@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Edite } from "../Modals/ModalsOrganisme";
 import authHeader from "./auth-header";
 
 const API_URL = "http://localhost:1111/";
@@ -20,11 +21,15 @@ const getFormation = () => {
 const addOrganisme = (data) => {
   return axios.post(API_URL + 'add-organisme', data);
 };
+const updateOrganisme = (data) => {
+  return axios.put(API_URL + 'update-organisme/' + data._id, data);
+};
 
 export default {
   getStatistique,
   getEmployee,
   getOrganisme,
   getFormation,
-  addOrganisme
+  addOrganisme,
+  updateOrganisme
 };

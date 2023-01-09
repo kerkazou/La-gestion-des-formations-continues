@@ -30,7 +30,7 @@ const UpdateOrganisme = async (req, res) => {
     const id = req.params.id
     const find_organisme = await Organisme.findById(id)
     if (!find_organisme) throw Error('Organisme not existed')
-    const update_organisme = await Organisme.updateOne({ id }, { name: name })
+    const update_organisme = await Organisme.updateOne({ _id: id }, { name })
     if (!update_organisme) throw Error('Organisme not updated try again')
     res.json({ message: 'Successfully, Organisme is updated' })
 }

@@ -6,7 +6,7 @@ import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import UserService from "../services/user.service";
 
-import ModalsOrganisme from '../Modals/ModalsOrganisme'
+import { Add, Edite } from '../Modals/ModalsOrganisme'
 
 export default function Organisme() {
 
@@ -37,6 +37,21 @@ export default function Organisme() {
                 console.log(err)
             })
     }
+    const [edite, setEdite] = useState({ name: '' })
+    const onChangeEdite = (e) => {
+        const value = e.target.value;
+        setEdite({ ...edite, [e.target.name]: value })
+    }
+    const onSubmitEdite = (e) => {
+        e.preventDefault();
+        UserService.updateOrganisme(edite)
+            .then((res) => {
+                console.log(res.data.message)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
 
     if (!useSelector((state) => state.auth.isLoggedIn)) {
         return <Navigate to="/login" />;
@@ -54,7 +69,7 @@ export default function Organisme() {
                             <button type="button" data-bs-toggle="modal" data-bs-target="#add_organisme" className="fs-3 fw-bold border-0 bg-body">
                                 <i className="bi bi-plus-circle-dotted"></i>
                             </button>
-                            <ModalsOrganisme onSubmit={onSubmit} onChange={onChange} value={add.name} />
+                            <Add onSubmit={onSubmit} onChange={onChange} value={add.name} />
                         </div>
                         <table className="table table-sm table-responsive text-center">
                             <thead className="fs-5">
@@ -71,7 +86,7 @@ export default function Organisme() {
                                         <td className="col-3">{organisme.name}</td>
                                         <td className="col-2">
                                             <div className='d-flex gap-3'>
-                                                <i className="bi bi-pen"></i>
+                                                <i className="bi bi-pen" onClick={() => { setEdite(organisme) }} type="button" data-bs-toggle="modal" data-bs-target="#edite_organisme"></i>
                                                 <i className="bi bi-trash3"></i>
                                             </div>
                                         </td>
@@ -79,6 +94,7 @@ export default function Organisme() {
                                 ))}
                             </tbody>
                         </table>
+                        <Edite onSubmit={onSubmitEdite} onChange={onChangeEdite} value={edite.name} />
                     </div>
                 </div>
             </div>
