@@ -22,15 +22,16 @@ const GetFormations = async (req, res) => {
 
 const AddFormation = async (req, res) => {
     const { body } = req
-    if (!body.name || !body.duration) {
+    if (!body.name || !body.dateDebut || !body.dateFin) {
         fs.unlinkSync('./public/' + req.file.filename);
         throw Error('Fill the all fields')
     }
     if (await Formation.findOne({ name: body.name })) throw Error('Formation already exist')
     const formation = await Formation.create({
         name: body.name,
-        duration: body.duration,
-        image: `${req.protocol}://${req.get("host")}/public/${req.file.filename}`
+        dateDebut: body.dateDebut,
+        dateFin: body.dateFin,
+        image: `${req.protocol}://${req.get("host")}/${req.file.filename}`
     })
     if (!formation) throw Error('Formation not created try again')
     res.json({ message: 'Successfully, Formation is created' })

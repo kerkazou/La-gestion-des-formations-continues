@@ -4,7 +4,8 @@ const Formation = mongoose.model(
   "Formation",
   new mongoose.Schema({
     name: String,
-    duration: Number,
+    dateDebut: Date,
+    dateFin: Date,
     image: String
   })
 );

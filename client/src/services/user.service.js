@@ -31,6 +31,9 @@ const deleteOrganisme = (id) => {
 const addEmployee = (data) => {
   return axios.post(API_URL + 'add-employee', data);
 };
+const addFormation = (data) => {
+  return axios.post(API_URL + 'add-formation', data);
+};
 
 export default {
   getStatistique,
@@ -40,5 +43,6 @@ export default {
   addOrganisme,
   updateOrganisme,
   deleteOrganisme,
-  addEmployee
+  addEmployee,
+  addFormation
 };
