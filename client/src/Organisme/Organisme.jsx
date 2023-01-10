@@ -63,10 +63,6 @@ export default function Organisme() {
             })
     }
 
-    if (!useSelector((state) => state.auth.isLoggedIn)) {
-        return <Navigate to="/login" />;
-    }
-
     return (
         <div className="container-fluid">
             <div className="row flex-nowrap">

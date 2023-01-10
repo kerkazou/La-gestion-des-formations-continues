@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { Navigate } from 'react-router-dom'
 import { apiLogout } from "../actions/auth"
 
 export default function SidBar() {
@@ -10,11 +11,19 @@ export default function SidBar() {
         { name: 'Employee', href: 'Employee', icon: 'bi bi-people' },
         { name: 'Organisme', href: 'Organisme', icon: 'bi bi-building' },
         { name: 'Formation', href: 'Formation', icon: 'bi bi-briefcase' }
-    ])    
+    ])
 
     const dispatch = useDispatch();
     const Logout = () => {
         dispatch(apiLogout())
+    }
+
+    let state = useSelector((state) => state.auth)
+
+    if (!state.isLoggedIn) {
+        return <Navigate to="/login" />;
+    } else {
+        if (state.user.role !== 'Administrator') console.log(state.user.role)
     }
 
     return (

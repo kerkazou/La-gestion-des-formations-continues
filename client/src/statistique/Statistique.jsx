@@ -23,14 +23,6 @@ export default function Statistique() {
             })
     }, []);
 
-    let state = useSelector((state) => state.auth)
-
-    if (!state.isLoggedIn) {
-        return <Navigate to="/login" />;
-    }else{
-        // if(state.user.role !== 'Administrator') console.log(state.user.role)
-    }
-
     return (
         <div className="container-fluid">
             <div className="row flex-nowrap">
