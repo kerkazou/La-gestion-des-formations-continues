@@ -15,6 +15,7 @@ router.get('/', tryCatch(statistiqueControllers.Statistique));
 router.get('/formations', tryCatch(formationControllers.GetFormations));
 router.post('/add-formation', uploadImage.single('image'), tryCatch(formationControllers.AddFormation));
 router.put('/update-formation/:id', uploadImage.single('image'), tryCatch(formationControllers.UpdateFormation));
+router.delete('/delete-formation/:id', tryCatch(formationControllers.DeleteFormation));
 // Employees
 router.get('/employees', tryCatch(employeeControllers.GetEmployees));
 router.post('/add-employee', tryCatch(employeeControllers.AddEmployee));

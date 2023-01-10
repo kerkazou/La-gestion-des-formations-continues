@@ -55,8 +55,25 @@ const UpdateFormation = async (req, res) => {
     res.json({ message: 'Successfully, Formation is updated' })
 }
 
+const DeleteFormation = async (req, res) => {
+    const id = req.params.id
+    const find_formation = await Formation.findById(id)
+    if (!find_formation) throw Error('Formation not existed')
+    if (find_formation.status) {
+        const delete_formation = await Formation.updateOne({ _id: id }, { status: false })
+        if (!delete_formation) throw Error('Formation not Deleted try again')
+        res.json({ message: 'Successfully, Formation is Deleted' })
+    }
+    if (!find_formation.status) {
+        const delete_formation = await Formation.updateOne({ _id: id }, { status: true })
+        if (!delete_formation) throw Error('Formation not reset try again')
+        res.json({ message: 'Successfully, Formation is Reset' })
+    }
+}
+
 module.exports = {
     GetFormations,
     AddFormation,
-    UpdateFormation
+    UpdateFormation,
+    DeleteFormation
 }

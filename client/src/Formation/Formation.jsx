@@ -45,6 +45,17 @@ export default function Employee() {
             })
     }
 
+    const onDelete = (id, e) => {
+        e.preventDefault();
+        UserService.deleteFormation(id)
+            .then((res) => {
+                console.log(res.data.message)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
     if (!useSelector((state) => state.auth.isLoggedIn)) {
         return <Navigate to="/login" />;
     }
@@ -82,8 +93,13 @@ export default function Employee() {
                                         <td className="col-3">{formation.dateFin}</td>
                                         <td className="col-2">
                                             <div className='d-flex gap-3'>
-                                                <i className="bi bi-pen"></i>
-                                                <i className="bi bi-trash3"></i>
+                                                <i className="bi bi-pen" type="button" data-bs-toggle="modal" data-bs-target="#edite_formation"></i>
+                                                <div type='button' onClick={(e) => onDelete(formation._id, e)}>
+                                                    {(formation.status)
+                                                        ? <i className="bi bi-trash3"></i>
+                                                        : <i className="bi bi-arrow-clockwise"></i>
+                                                    }
+                                                </div>
                                             </div>
                                         </td>
                                     </tr>

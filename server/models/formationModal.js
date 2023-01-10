@@ -6,7 +6,11 @@ const Formation = mongoose.model(
     name: String,
     dateDebut: Date,
     dateFin: Date,
-    image: String
+    image: String,
+    status: {
+      type: Boolean,
+      default: true
+    }
   })
 );
 
