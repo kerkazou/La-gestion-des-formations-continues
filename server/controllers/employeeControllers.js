@@ -13,11 +13,12 @@ const Organisme = db.organisme;
 
 
 const GetEmployees = async (req, res) => {
+    const organisme = await Organisme.find()
     const role_employee = await Role.findOne({ name: 'Employee' })
     const find_employee = await User.find({ role: role_employee._id })
         .populate('roles')
         .populate('organisme')
-    res.send({ employee: find_employee })
+    res.send({ employee: find_employee, organisme })
 }
 
 const AddEmployee = async (req, res) => {
@@ -27,7 +28,7 @@ const AddEmployee = async (req, res) => {
     if (find_email) throw Error('Employee already exist')
     const role_employee = await Role.findOne({ name: 'Employee' })
     const find_organisme = await Organisme.findOne({ name: body.organisme })
-    if (find_organisme) throw Error('Formation not existed')
+    if (!find_organisme) throw Error('Organisme not existed')
     const password = await (Math.random() + 1).toString(36).substring(7)
     const hash = await bcrypt.hash(password, saltRounds);
     const user = await User.create({
