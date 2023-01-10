@@ -8,26 +8,27 @@ import UserService from "../services/user.service";
 
 export default function Statistique() {
 
-    let [statistique, setStatistique] = useState([])
-    
+    const [cards, setCards] = useState([])
     useEffect(() => {
         UserService.getStatistique()
             .then((res) => {
-                setStatistique(res.data)
+                setCards([
+                    { name: 'Employee', number: res.data.employee, icon: 'bi bi-people' },
+                    { name: 'Organisme', number: res.data.formation, icon: 'bi bi-building' },
+                    { name: 'Formation', number: res.data.organisme, icon: 'bi bi-briefcase' }
+                ])
             })
             .catch((err) => {
                 console.log(err)
             })
     }, []);
 
-    const [cards, setCards] = useState([
-        { name: 'Employee', number: statistique.employee||'-', icon: 'bi bi-people' },
-        { name: 'Organisme', number: statistique.formation||'-', icon: 'bi bi-building' },
-        { name: 'Formation', number: statistique.organisme||'-', icon: 'bi bi-briefcase' }
-    ])
+    let state = useSelector((state) => state.auth)
 
-    if (!useSelector((state) => state.auth.isLoggedIn)) {
+    if (!state.isLoggedIn) {
         return <Navigate to="/login" />;
+    }else{
+        // if(state.user.role !== 'Administrator') console.log(state.user.role)
     }
 
     return (

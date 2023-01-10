@@ -19,9 +19,11 @@ const Statistique = async (req, res) => {
         { $count: "total" }
     ])
     const formation = await Formation.aggregate([
+        { $match: { status: true } },
         { $count: "total" }
     ])
     const organisme = await Organisme.aggregate([
+        { $match: { status: true } },
         { $count: "total" }
     ])
     let n_employee = 0
