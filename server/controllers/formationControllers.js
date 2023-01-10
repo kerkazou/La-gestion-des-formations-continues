@@ -40,16 +40,15 @@ const AddFormation = async (req, res) => {
 const UpdateFormation = async (req, res) => {
     const { body } = req
     const id = req.params.id
-    if (!body.name || !body.duration) throw Error('Fill the all fields')
+    if (!body.name || !body.dateDebut || !body.dateFin) throw Error('Fill the all fields')
     const find_formation = await Formation.findById(id)
     if (!find_formation) throw Error('Formation not existed')
     const update_formation = await Formation.updateOne({ id }, { ...body })
     if (req.file) {
         const file = find_formation.image.split('/')[find_formation.image.split('/').length - 1]
-        fs.unlinkSync('./public/' + file);
-        const update_file_formation = await Formation.updateOne({ id }, { image: req.file.filename })
+        const delete_file = await fs.unlinkSync('./public/' + file)
+        const update_file_formation = await Formation.updateOne({ id }, { image: `${req.protocol}://${req.get("host")}/${req.file.filename}` })
         if (!update_file_formation) throw Error('Formation not updated try again')
-        if (update_formation && update_file_formation) res.json({ message: 'Successfully, Formation is updated' })
     }
     if (!update_formation) throw Error('Formation not updated try again')
     res.json({ message: 'Successfully, Formation is updated' })

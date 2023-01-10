@@ -34,6 +34,9 @@ const addEmployee = (data) => {
 const addFormation = (data) => {
   return axios.post(API_URL + 'add-formation', data);
 };
+const updateformation = (id, data) => {
+  return axios.put(API_URL + 'update-formation/' + id, data);
+};
 const deleteFormation = (id) => {
   return axios.delete(API_URL + 'delete-formation/' + id);
 };
@@ -48,5 +51,6 @@ export default {
   deleteOrganisme,
   addEmployee,
   addFormation,
+  updateformation,
   deleteFormation
 };

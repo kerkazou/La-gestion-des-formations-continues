@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import UserService from "../services/user.service";
-import { Add } from '../Modals/ModalsFormation'
+import { Add, Edite } from '../Modals/ModalsFormation'
 
 export default function Employee() {
 
@@ -37,6 +37,31 @@ export default function Employee() {
         formData.append('dateFin', add.dateFin)
         formData.append('image', add.image)
         UserService.addFormation(formData)
+            .then((res) => {
+                console.log(res.data)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
+    const [edite, setEdite] = useState({ name: '', dateDebut: '', dateFin: '', image: '' })
+    const onChangeEdite = (e) => {
+        const value = e.target.value;
+        setEdite({ ...edite, [e.target.name]: value })
+    }
+    const onChangeEditeFile = (e) => {
+        const value = e.target.files[0];
+        setEdite({ ...edite, [e.target.name]: value })
+    }
+    const onSubmitEdite = (e) => {
+        e.preventDefault();
+        const formData = new FormData()
+        formData.append('name', edite.name)
+        formData.append('dateDebut', edite.dateDebut)
+        formData.append('dateFin', edite.dateFin)
+        formData.append('image', edite.image)
+        UserService.updateformation(edite._id, formData)
             .then((res) => {
                 console.log(res.data)
             })
@@ -93,7 +118,7 @@ export default function Employee() {
                                         <td className="col-3">{formation.dateFin}</td>
                                         <td className="col-2">
                                             <div className='d-flex gap-3'>
-                                                <i className="bi bi-pen" type="button" data-bs-toggle="modal" data-bs-target="#edite_formation"></i>
+                                                <i className="bi bi-pen" type="button" onClick={() => { setEdite(formation) }} data-bs-toggle="modal" data-bs-target="#edite_formation"></i>
                                                 <div type='button' onClick={(e) => onDelete(formation._id, e)}>
                                                     {(formation.status)
                                                         ? <i className="bi bi-trash3"></i>
@@ -106,6 +131,7 @@ export default function Employee() {
                                 ))}
                             </tbody>
                         </table>
+                        <Edite onSubmit={onSubmitEdite} onChange={onChangeEdite} onChangeFile={onChangeEditeFile} value={edite} />
                     </div>
                 </div>
             </div>
