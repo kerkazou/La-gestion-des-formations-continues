@@ -11,7 +11,7 @@ function Add(props) {
                     </div>
                     <div className="modal-body">
                         <div className="form-floating text-muted">
-                            <select onChange={props.onChange} value={props.add} className="form-control shadow-none" id='employee' name='employee' placeholder='Employee'>
+                            <select onChange={props.onChange} className="form-control shadow-none" id='employee' name='employee' placeholder='Employee'>
                             <option value=''>Employee</option>
                                 {props.employees.map((employee, i) => (
                                     <option value={employee._id} key={i}>{employee.username}</option>
@@ -20,7 +20,7 @@ function Add(props) {
                             <label htmlFor='organisme'>Employee</label>
                         </div>
                         <div className="form-floating text-muted mt-3">
-                            <select onChange={props.onChange} value={props.add} className="form-control shadow-none" id='formation' name='formation' placeholder='Formation'>
+                            <select onChange={props.onChange} className="form-control shadow-none" id='formation' name='formation' placeholder='Formation'>
                             <option value=''>Formation</option>
                                 {props.formations.map((formation, i) => (
                                     <option value={formation._id} key={i}>{formation.name}</option>
