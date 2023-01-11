@@ -37,7 +37,17 @@ const FormationToEmployee = async (req, res) => {
     res.json({ message: 'Successfully, Formation assigned to employee' })
 }
 
+const MyFormation = async (req, res) => {
+    const token = req.params.token
+    const verify_token = await jwt.verify(token, process.env.TOKEN_KEY)
+    const user = await User.findById(verify_token._id)
+    if (!user) throw Error('Error, User not found')
+    const formation = await User_formation.find({ employee: user._id })
+    res.send(formation)
+}
+
 module.exports = {
     GetFormation,
-    FormationToEmployee
+    FormationToEmployee,
+    MyFormation
 }

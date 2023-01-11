@@ -41,6 +41,10 @@ const deleteFormation = (id) => {
   return axios.delete(API_URL + 'delete-formation/' + id);
 };
 
+const myFormation = (token) => {
+  return axios.get(API_URL + 'my-formation/' + token);
+};
+
 export default {
   getStatistique,
   getEmployee,
@@ -52,5 +56,6 @@ export default {
   addEmployee,
   addFormation,
   updateformation,
-  deleteFormation
+  deleteFormation,
+  myFormation
 };

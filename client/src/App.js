@@ -7,6 +7,8 @@ import Employee from "./Employee/Employee"
 import Organisme from "./Organisme/Organisme"
 import Formation from "./Formation/Formation"
 
+import MyFormation from "./MyFormation/MyFormation"
+
 
 export default function App() {
 
@@ -15,10 +17,14 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/Login" element={<Login />} />
+          {/* Dashboard Admin */}
           <Route path="/" element={<Statistique />} />
           <Route path="/Employee" element={<Employee />} />
           <Route path="/Organisme" element={<Organisme />} />
           <Route path="/Formation" element={<Formation />} />
+          {/* Dashboard Employee */}
+          <Route path="/My-Formation" element={<MyFormation />} />
+          {/* Page not found */}
           <Route path="*" element={'Page not found'} />
         </Routes>
       </BrowserRouter>

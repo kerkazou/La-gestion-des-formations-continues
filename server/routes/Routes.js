@@ -25,8 +25,10 @@ router.post('/add-organisme', tryCatch(organismeControllers.AddOrganisme));
 router.put('/update-organisme/:id', tryCatch(organismeControllers.UpdateOrganisme));
 router.delete('/delete-organisme/:id', tryCatch(organismeControllers.DeleteOrganisme));
 // Formation Employee
-router.get('/formation', tryCatch(user_formationControllers.GetFormation));
-router.post('/formation-employee', tryCatch(user_formationControllers.FormationToEmployee));
+router.get('/my-formation/:token', tryCatch(user_formationControllers.MyFormation));
+
+// router.get('/formation-employee', tryCatch(user_formationControllers.GetFormation));
+// router.post('/formation-to-employee', tryCatch(user_formationControllers.FormationToEmployee));
 
 router.use(errorHandller);
 
