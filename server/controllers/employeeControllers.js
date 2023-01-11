@@ -15,7 +15,7 @@ const Organisme = db.organisme;
 const GetEmployees = async (req, res) => {
     const organisme = await Organisme.find()
     const role_employee = await Role.findOne({ name: 'Employee' })
-    const find_employee = await User.find({ role: role_employee._id })
+    const find_employee = await User.find({ roles: role_employee._id })
         .populate('roles')
         .populate('organisme')
     res.send({ employee: find_employee, organisme })
