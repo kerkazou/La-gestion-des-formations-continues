@@ -46,8 +46,8 @@ const UpdateFormation = async (req, res) => {
     const update_formation = await Formation.updateOne({ id }, { ...body })
     if (req.file) {
         const file = find_formation.image.split('/')[find_formation.image.split('/').length - 1]
-        const delete_file = await fs.unlinkSync('./public/' + file)
         const update_file_formation = await Formation.updateOne({ id }, { image: `${req.protocol}://${req.get("host")}/${req.file.filename}` })
+        const delete_file = await fs.unlinkSync('./public/' + file)
         if (!update_file_formation) throw Error('Formation not updated try again')
     }
     if (!update_formation) throw Error('Formation not updated try again')

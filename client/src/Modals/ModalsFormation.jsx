@@ -6,7 +6,7 @@ function Add(props) {
             <div className="modal-dialog modal-dialog-centered">
                 <form className="modal-content" onSubmit={props.onSubmit}>
                     <div className="modal-header">
-                        <h5 className="modal-title" id="staticBackdropLabel">Edite Formation</h5>
+                        <h5 className="modal-title" id="staticBackdropLabel">Add Formation</h5>
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div className="modal-body">
@@ -29,7 +29,7 @@ function Add(props) {
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" className="btn btn-primary">Edite</button>
+                        <button type="submit" className="btn btn-primary">Add</button>
                     </div>
                 </form>
             </div>
@@ -43,7 +43,7 @@ function Edite(props) {
             <div className="modal-dialog modal-dialog-centered">
                 <form className="modal-content" onSubmit={props.onSubmit}>
                     <div className="modal-header">
-                        <h5 className="modal-title" id="staticBackdropLabel">Add Formation</h5>
+                        <h5 className="modal-title" id="staticBackdropLabel">Edite Formation</h5>
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div className="modal-body">
@@ -66,7 +66,7 @@ function Edite(props) {
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" className="btn btn-primary">Add</button>
+                        <button type="submit" className="btn btn-primary">Edite</button>
                     </div>
                 </form>
             </div>

@@ -98,6 +98,7 @@ export default function Employee() {
                         <table className="table table-sm table-responsive text-center">
                             <thead className="fs-5">
                                 <tr>
+                                    <th className="col-3">Id</th>
                                     <th className="col-3">Image</th>
                                     <th className="col-3">Name</th>
                                     <th className="col-3">Date debut</th>
@@ -108,6 +109,7 @@ export default function Employee() {
                             <tbody>
                                 {formations.map((formation, i) => (
                                     <tr className="item" key={i}>
+                                        <td className="col-3">{formation._id}</td>
                                         <td className="col-3"><img className='col-3' src={formation.image} alt={formation.image} /></td>
                                         <td className="col-3">{formation.name}</td>
                                         <td className="col-3">{formation.dateDebut}</td>

@@ -70,15 +70,19 @@ export default function FormationEmployee() {
                         <table className="table table-sm table-responsive text-center">
                             <thead className="fs-5">
                                 <tr>
-                                    <th className="col-3">formation</th>
-                                    <th className="col-3">employee</th>
+                                    <th className="col-5">formation</th>
+                                    <th className="col-5">employee</th>
+                                    <th className="col-2"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {formation_employee.map((f_e, i) => (
                                     <tr className="item" key={i}>
-                                        <td className="col-3">{f_e.employee[0].username}</td>
-                                        <td className="col-3">{f_e.formation[0].name}</td>
+                                        <td className="col-5">{f_e.employee[0].username}</td>
+                                        <td className="col-5">{f_e.formation[0].name}</td>
+                                        <td className="col-2">
+                                            <i className="bi bi-trash3"></i>
+                                        </td>
                                     </tr>
                                 ))}
                             </tbody>
