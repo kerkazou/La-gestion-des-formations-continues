@@ -44,6 +44,9 @@ const deleteFormation = (id) => {
 const getFormationEmployee = () => {
   return axios.get(API_URL + 'formation-employee');
 };
+const FormationToEmployee = (data) => {
+  return axios.post(API_URL + 'formation-to-employee', data);
+};
 
 const myFormation = (token) => {
   return axios.get(API_URL + 'my-formation/' + token);
@@ -62,5 +65,6 @@ export default {
   updateformation,
   deleteFormation,
   getFormationEmployee,
+  FormationToEmployee,
   myFormation
 };

@@ -33,14 +33,13 @@ export default function FormationEmployee() {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log(add)
-        // UserService.addOrganisme(add)
-        //     .then((res) => {
-        //         console.log(res.data.message)
-        //     })
-        //     .catch((err) => {
-        //         console.log(err)
-        //     })
+        UserService.FormationToEmployee(add)
+            .then((res) => {
+                console.log(res.data)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     }
 
     // const onDelete = (id, e) => {
@@ -78,8 +77,8 @@ export default function FormationEmployee() {
                             <tbody>
                                 {formation_employee.map((f_e, i) => (
                                     <tr className="item" key={i}>
-                                        <td className="col-3">{f_e.employee}</td>
-                                        <td className="col-3">{f_e.formation}</td>
+                                        <td className="col-3">{f_e.employee[0].username}</td>
+                                        <td className="col-3">{f_e.formation[0].name}</td>
                                     </tr>
                                 ))}
                             </tbody>

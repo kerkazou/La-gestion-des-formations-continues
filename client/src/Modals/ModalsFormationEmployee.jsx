@@ -6,7 +6,7 @@ function Add(props) {
             <div className="modal-dialog modal-dialog-centered">
                 <form className="modal-content" onSubmit={props.onSubmit}>
                     <div className="modal-header">
-                        <h5 className="modal-title" id="staticBackdropLabel">Add Employee</h5>
+                        <h5 className="modal-title" id="staticBackdropLabel">Formation Emplpyee</h5>
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div className="modal-body">
@@ -14,7 +14,7 @@ function Add(props) {
                             <select onChange={props.onChange} value={props.add} className="form-control shadow-none" id='employee' name='employee' placeholder='Employee'>
                             <option value=''>Employee</option>
                                 {props.employees.map((employee, i) => (
-                                    <option value={employee.name} key={i}>{employee.username}</option>
+                                    <option value={employee._id} key={i}>{employee.username}</option>
                                 ))}
                             </select>
                             <label htmlFor='organisme'>Employee</label>
@@ -23,7 +23,7 @@ function Add(props) {
                             <select onChange={props.onChange} value={props.add} className="form-control shadow-none" id='formation' name='formation' placeholder='Formation'>
                             <option value=''>Formation</option>
                                 {props.formations.map((formation, i) => (
-                                    <option value={formation.name} key={i}>{formation.name}</option>
+                                    <option value={formation._id} key={i}>{formation.name}</option>
                                 ))}
                             </select>
                             <label htmlFor='organisme'>Organisme</label>

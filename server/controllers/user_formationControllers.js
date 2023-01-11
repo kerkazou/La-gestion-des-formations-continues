@@ -16,7 +16,7 @@ const User_formation = db.user_formation;
 const GetFormation = async (req, res) => {
     const token = storage('token')
     const formation_employee = await User_formation.find()
-        .populate('user')
+        .populate('employee')
         .populate('formation')
     const role_employee = await Role.findOne({ name: 'Employee' })
     const employee = await User.find({ roles: role_employee._id })
@@ -28,17 +28,16 @@ const GetFormation = async (req, res) => {
 
 const FormationToEmployee = async (req, res) => {
     const { body } = req
-    if (!body.organisme || !body.formation) throw Error('Fill the all fields')
-    const find_organisme = await Organisme.findOne({ name: body.organisme })
-    if (!find_organisme) throw Error('Organisme is not exist')
-    const find_formation = await Formation.findOne({ name: body.formation })
-    if (!find_formation) throw Error('Formation is not exist')
-    const user_formation = await User_formation.create({
-        organisme: find_organisme._id,
+    if (!body.employee || !body.formation) throw Error('Fill the all fields')
+    const find_employee = await User.findById(body.employee)
+    const find_formation = await Formation.findById(body.formation)
+    if (!find_employee || !find_formation) throw Error('Emplotee or Formation is not exist')
+    const formation_employee = await User_formation.create({
+        employee: find_employee._id,
         formation: find_formation._id
     })
-    if (!user_formation) throw Error('Formation not assigned to employee, try again')
-    res.json({ message: 'Successfully, Formation assigned to employee' })
+    if (!formation_employee) throw Error('Formation not assigned to employee, try again')
+    res.json({ message: 'Successfully' })
 }
 
 const MyFormation = async (req, res) => {
