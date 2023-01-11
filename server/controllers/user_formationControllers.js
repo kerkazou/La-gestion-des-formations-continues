@@ -15,11 +15,15 @@ const User_formation = db.user_formation;
 
 const GetFormation = async (req, res) => {
     const token = storage('token')
-    const ferify_token = await jwt.verify(token, process.env.TOKEN_KEY)
-    const find_formation = await User_formation.find({ employee: ferify_token._id })
+    const formation_employee = await User_formation.find()
         .populate('user')
         .populate('formation')
-    res.send({ formation: find_formation })
+    const role_employee = await Role.findOne({ name: 'Employee' })
+    const employee = await User.find({ roles: role_employee._id })
+        .populate('roles')
+        .populate('organisme')
+    const formation = await Formation.find()
+    res.send({ formation_employee, employee, formation })
 }
 
 const FormationToEmployee = async (req, res) => {

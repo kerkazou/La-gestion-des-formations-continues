@@ -10,7 +10,8 @@ export default function SidBar() {
         { name: 'Statistique', href: '/', icon: 'bi bi-house' },
         { name: 'Employee', href: 'Employee', icon: 'bi bi-people' },
         { name: 'Organisme', href: 'Organisme', icon: 'bi bi-building' },
-        { name: 'Formation', href: 'Formation', icon: 'bi bi-briefcase' }
+        { name: 'Formation', href: 'Formation', icon: 'bi bi-briefcase' },
+        { name: 'Formation Employee', href: 'Formation-Employee', icon: 'bi bi-briefcase' }
     ])
 
     const dispatch = useDispatch();

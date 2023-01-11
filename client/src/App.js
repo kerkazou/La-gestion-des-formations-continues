@@ -6,6 +6,7 @@ import Statistique from "./statistique/Statistique"
 import Employee from "./Employee/Employee"
 import Organisme from "./Organisme/Organisme"
 import Formation from "./Formation/Formation"
+import FormationEmployee from "./FormationEmployee/FormationEmployee"
 
 import MyFormation from "./MyFormation/MyFormation"
 
@@ -22,6 +23,7 @@ export default function App() {
           <Route path="/Employee" element={<Employee />} />
           <Route path="/Organisme" element={<Organisme />} />
           <Route path="/Formation" element={<Formation />} />
+          <Route path="/Formation-Employee" element={<FormationEmployee />} />
           {/* Dashboard Employee */}
           <Route path="/My-Formation" element={<MyFormation />} />
           {/* Page not found */}
