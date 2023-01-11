@@ -14,8 +14,8 @@ export default function Statistique() {
             .then((res) => {
                 setCards([
                     { name: 'Employee', number: res.data.employee, icon: 'bi bi-people' },
-                    { name: 'Organisme', number: res.data.formation, icon: 'bi bi-building' },
-                    { name: 'Formation', number: res.data.organisme, icon: 'bi bi-briefcase' }
+                    { name: 'Organisme', number: res.data.organisme, icon: 'bi bi-building' },
+                    { name: 'Formation', number: res.data.formation, icon: 'bi bi-briefcase' }
                 ])
             })
             .catch((err) => {

@@ -21,10 +21,9 @@ export default function SidBar() {
 
     let state = useSelector((state) => state.auth)
 
-    if (!state.isLoggedIn) {
-        return <Navigate to="/login" />;
-    } else {
-        if (state.user.role !== 'Administrator') console.log(state.user.role)
+    if (!state.isLoggedIn) return <Navigate to="/login" />
+    else {
+        if (state.user.role !== 'Administrator') return <Navigate to="/My-Formation" />
     }
 
     return (
