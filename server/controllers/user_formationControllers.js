@@ -46,6 +46,8 @@ const MyFormation = async (req, res) => {
     const user = await User.findById(verify_token._id)
     if (!user) throw Error('Error, User not found')
     const formation = await User_formation.find({ employee: user._id })
+        .populate('employee')
+        .populate('formation')
     res.send(formation)
 }
 

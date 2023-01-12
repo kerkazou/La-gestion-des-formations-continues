@@ -44,9 +44,11 @@ export default function FormationEmployee() {
                             ? "You don't have any formation naw."
                             : myformations.map((myformation, i) => (
                                 <div className="card col-3" key={i}>
-                                    <img src={myformation.image} className="card-img-top" alt="..." />
+                                    <img src={myformation.formation[0].image} className="card-img-top" alt="..." />
                                     <div className="card-body">
-                                        <h5 className="card-title">{myformation.name}</h5>
+                                        <h5 className="card-title">{myformation.formation[0].name}</h5>
+                                        <h5 className="card-title">Date Debut: {myformation.formation[0].dateDebut}</h5>
+                                        <h5 className="card-title">Date Fin: {myformation.formation[0].dateFin}</h5>
                                     </div>
                                 </div>
                             ))}
