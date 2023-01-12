@@ -1,6 +1,5 @@
 import axios from "axios";
 import { Edite } from "../Modals/ModalsOrganisme";
-import authHeader from "./auth-header";
 
 const API_URL = "http://localhost:1111/";
 
