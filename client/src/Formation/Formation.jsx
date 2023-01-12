@@ -2,10 +2,9 @@ import './style.css'
 import SidBar from '../components/SidBar';
 import Nav from '../components/Nav';
 import { useState, useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import UserService from "../services/user.service";
-import { Add, Edite } from '../Modals/ModalsFormation'
+import Generator from '../Generator/Generator';
+import { Add, Edite } from '../Modals/ModalsFormation';
 
 export default function Employee() {
 
@@ -38,7 +37,8 @@ export default function Employee() {
         formData.append('image', add.image)
         UserService.addFormation(formData)
             .then((res) => {
-                console.log(res.data)
+                if (!res.data.message) Generator("error", res.data)
+                else Generator("success", res.data.message)
             })
             .catch((err) => {
                 console.log(err)
@@ -63,7 +63,8 @@ export default function Employee() {
         formData.append('image', edite.image)
         UserService.updateformation(edite._id, formData)
             .then((res) => {
-                console.log(res.data)
+                if (!res.data.message) Generator("error", res.data)
+                else Generator("success", res.data.message)
             })
             .catch((err) => {
                 console.log(err)
@@ -74,7 +75,8 @@ export default function Employee() {
         e.preventDefault();
         UserService.deleteFormation(id)
             .then((res) => {
-                console.log(res.data.message)
+                if (!res.data.message) Generator("error", res.data)
+                else Generator("success", res.data.message)
             })
             .catch((err) => {
                 console.log(err)
@@ -98,7 +100,6 @@ export default function Employee() {
                         <table className="table table-sm table-responsive text-center">
                             <thead className="fs-5">
                                 <tr>
-                                    <th className="col-3">Id</th>
                                     <th className="col-3">Image</th>
                                     <th className="col-3">Name</th>
                                     <th className="col-3">Date debut</th>
@@ -109,7 +110,6 @@ export default function Employee() {
                             <tbody>
                                 {formations.map((formation, i) => (
                                     <tr className="item" key={i}>
-                                        <td className="col-3">{formation._id}</td>
                                         <td className="col-3"><img className='col-3' src={formation.image} alt={formation.image} /></td>
                                         <td className="col-3">{formation.name}</td>
                                         <td className="col-3">{formation.dateDebut}</td>
