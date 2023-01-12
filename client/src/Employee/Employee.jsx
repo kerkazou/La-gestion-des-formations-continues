@@ -2,10 +2,9 @@ import './style.css'
 import SidBar from '../components/SidBar';
 import Nav from '../components/Nav';
 import { useState, useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import UserService from "../services/user.service";
-import { Add } from '../Modals/ModalsEmployee'
+import Generator from '../Generator/Generator';
+import { Add } from '../Modals/ModalsEmployee';
 
 export default function Employee() {
 
@@ -31,7 +30,8 @@ export default function Employee() {
         e.preventDefault();
         UserService.addEmployee(add)
             .then((res) => {
-                console.log(res.data)
+                if (!res.data.message) Generator("error", res.data)
+                else Generator("success", res.data.message)
             })
             .catch((err) => {
                 console.log(err)
