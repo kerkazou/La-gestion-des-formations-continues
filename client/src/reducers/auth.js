@@ -3,8 +3,8 @@ import { LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT, } from "../actions/types";
 const user = JSON.parse(localStorage.getItem("user"));
 
 const initialState = user
-    ? { isLoggedIn: true, user: user }
-    : { isLoggedIn: false, user: null };
+    ? { isLoggedIn: true, user: user, message: '' }
+    : { isLoggedIn: false, user: null, message: '' };
 
 export default function (state = initialState, action) {
     const { type, payload } = action;
@@ -21,6 +21,7 @@ export default function (state = initialState, action) {
                 ...state,
                 isLoggedIn: false,
                 user: null,
+                message: payload.user
             };
         case LOGOUT:
             return {

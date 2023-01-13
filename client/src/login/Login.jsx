@@ -2,9 +2,10 @@ import './style.css'
 import Input from '../components/Input'
 import Label from '../components/Label'
 import Button from '../components/Button'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { apiLogin } from "../actions/auth"
+import Generator from '../Generator/Generator'
 import { Navigate } from 'react-router-dom'
 
 export default function Login() {
@@ -14,7 +15,12 @@ export default function Login() {
         { type: 'text', id: 'floatingInput', name: 'email', placeholder: 'Email', label: 'Email address' },
         { type: 'password', id: 'floatingPassword', name: 'password', placeholder: '••••••••', label: '••••••••' }
     ])
-
+    
+    const message = useSelector((state) => state.auth.message);
+    useEffect(() => {
+        if (message) Generator("error", message)
+    }, [message]);
+    
     const [login, setLogin] = useState({ email: '', password: '' })
     const onChange = (e) => {
         const value = e.target.value;

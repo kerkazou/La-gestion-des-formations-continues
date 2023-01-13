@@ -17,7 +17,11 @@ const User = mongoose.model(
         type: mongoose.Schema.Types.ObjectId,
         ref: "Organisme"
       }
-    ]
+    ],
+    status: {
+      type: Boolean,
+      default: true
+    }
   })
 );
 

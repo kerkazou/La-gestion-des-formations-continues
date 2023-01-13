@@ -42,6 +42,7 @@ db.role.estimatedDocumentCount((err, count) => {
                 }
             })
             .catch((error) => { console.log(error) })
+        Administrator();
     }
 });
 
@@ -62,6 +63,5 @@ const Administrator = async () => {
             });
     }
 }
-Administrator();
 
 module.exports = db;
