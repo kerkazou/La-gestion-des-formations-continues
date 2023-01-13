@@ -10,6 +10,10 @@ const getStatistique = () => {
 const getEmployee = () => {
   return axios.get(API_URL + 'employees');
 };
+const deleteEmployee = (id) => {
+  return axios.delete(API_URL + 'delete-employee/' + id);
+};
+
 const getOrganisme = () => {
   return axios.get(API_URL + 'organismes');
 };
@@ -54,6 +58,7 @@ const myFormation = (token) => {
 export default {
   getStatistique,
   getEmployee,
+  deleteEmployee,
   getOrganisme,
   getFormation,
   addOrganisme,

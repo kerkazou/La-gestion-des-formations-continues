@@ -19,6 +19,7 @@ router.delete('/delete-formation/:id', tryCatch(formationControllers.DeleteForma
 // Employees
 router.get('/employees', tryCatch(employeeControllers.GetEmployees));
 router.post('/add-employee', tryCatch(employeeControllers.AddEmployee));
+router.delete('/delete-employee/:id', tryCatch(employeeControllers.DeleteEmployee));
 // Organisme
 router.get('/organismes', tryCatch(organismeControllers.GetOrganisme));
 router.post('/add-organisme', tryCatch(organismeControllers.AddOrganisme));

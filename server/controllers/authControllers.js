@@ -15,8 +15,8 @@ const login = async (req, res) => {
     const { body } = req
     if (!body.email || !body.password) throw Error('Fill the all fields to login')
     const login_user = await User.findOne({ email: body.email })
-    if(!login_user.status) throw Error("You can't to use this account")
     if (!login_user || !(await bcrypt.compare(body.password, login_user.password))) throw Error('Email or password is incorect')
+    if(!login_user.status) throw Error("You can't to use this account")
     const login_role = await Role.findById(login_user.roles)
     const token = await jwt.sign({ _id: login_user._id }, process.env.TOKEN_KEY)
     storage('token', token)

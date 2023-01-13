@@ -38,6 +38,18 @@ export default function Employee() {
             })
     }
 
+    const onDelete = (id, e) => {
+        e.preventDefault();
+        UserService.deleteEmployee(id)
+            .then((res) => {
+                if (!res.data.message) Generator("error", res.data)
+                else Generator("success", res.data.message)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
     return (
         <div className="container-fluid">
             <div className="row flex-nowrap">
@@ -58,6 +70,7 @@ export default function Employee() {
                                     <th className="col-3">Username</th>
                                     <th className="col-3">Email</th>
                                     <th className="col-2">Organisme</th>
+                                    <th className="col-2"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -66,6 +79,14 @@ export default function Employee() {
                                         <td className="col-3">{employee.username}</td>
                                         <td className="col-3">{employee.email}</td>
                                         <td className="col-2">{(employee.organisme.length) ? employee.organisme[0].name : '---'}</td>
+                                        <td className="col-2">
+                                            <div type='button' onClick={(e) => onDelete(employee._id, e)}>
+                                                {(employee.status)
+                                                    ? <i className="bi bi-trash3"></i>
+                                                    : <i className="bi bi-arrow-clockwise"></i>
+                                                }
+                                            </div>
+                                        </td>
                                     </tr>
                                 ))}
                             </tbody>

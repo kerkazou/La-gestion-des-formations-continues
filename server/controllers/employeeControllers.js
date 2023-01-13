@@ -13,7 +13,7 @@ const Organisme = db.organisme;
 
 
 const GetEmployees = async (req, res) => {
-    const organisme = await Organisme.find()
+    const organisme = await Organisme.find({ status: true })
     const role_employee = await Role.findOne({ name: 'Employee' })
     const find_employee = await User.find({ roles: role_employee._id })
         .populate('roles')
@@ -45,7 +45,24 @@ const AddEmployee = async (req, res) => {
     if (!user) throw Error('User not created try again')
 }
 
+const DeleteEmployee = async (req, res) => {
+    const id = req.params.id
+    const find_employee = await User.findById(id)
+    if (!find_employee) throw Error('Employee not existed')
+    if (find_employee.status) {
+        const delete_employee = await User.updateOne({ _id: id }, { status: false })
+        if (!delete_employee) throw Error('Employee not Deleted try again')
+        res.json({ message: 'Successfully, Employee is Deleted' })
+    }
+    if (!find_employee.status) {
+        const delete_employee = await User.updateOne({ _id: id }, { status: true })
+        if (!delete_employee) throw Error('Employee not reset try again')
+        res.json({ message: 'Successfully, Employee is Reset' })
+    }
+}
+
 module.exports = {
     GetEmployees,
-    AddEmployee
+    AddEmployee,
+    DeleteEmployee
 }
