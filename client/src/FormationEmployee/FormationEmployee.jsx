@@ -3,6 +3,7 @@ import SidBar from '../components/SidBar';
 import Nav from '../components/Nav';
 import { useEffect, useState } from 'react';
 import UserService from "../services/user.service";
+import Generator from '../Generator/Generator';
 import { Add } from '../Modals/ModalsFormationEmployee';
 
 
@@ -33,23 +34,13 @@ export default function FormationEmployee() {
         e.preventDefault();
         UserService.FormationToEmployee(add)
             .then((res) => {
-                console.log(res.data)
+                if (!res.data.message) Generator("error", res.data)
+                else Generator("success", res.data.message)
             })
             .catch((err) => {
                 console.log(err)
             })
     }
-
-    // const onDelete = (id, e) => {
-    //     e.preventDefault();
-    //     UserService.deleteOrganisme(id)
-    //         .then((res) => {
-    //             console.log(res.data.message)
-    //         })
-    //         .catch((err) => {
-    //             console.log(err)
-    //         })
-    // }
 
     return (
         <div className="container-fluid">
