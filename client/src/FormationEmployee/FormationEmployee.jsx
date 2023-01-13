@@ -2,10 +2,8 @@ import './style.css'
 import SidBar from '../components/SidBar';
 import Nav from '../components/Nav';
 import { useEffect, useState } from 'react';
-import { Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import UserService from "../services/user.service";
-import { Add } from '../Modals/ModalsFormationEmployee'
+import { Add } from '../Modals/ModalsFormationEmployee';
 
 
 export default function FormationEmployee() {

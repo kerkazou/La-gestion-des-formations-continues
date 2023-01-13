@@ -2,10 +2,9 @@ import './style.css'
 import SidBar from '../components/SidBar';
 import Nav from '../components/Nav';
 import { useEffect, useState } from 'react';
-import { Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import UserService from "../services/user.service";
-import { Add, Edite } from '../Modals/ModalsOrganisme'
+import Generator from '../Generator/Generator';
+import { Add, Edite } from '../Modals/ModalsOrganisme';
 
 
 export default function Organisme() {
@@ -31,7 +30,8 @@ export default function Organisme() {
         e.preventDefault();
         UserService.addOrganisme(add)
             .then((res) => {
-                console.log(res.data.message)
+                if (!res.data.message) Generator("error", res.data)
+                else Generator("success", res.data.message)
             })
             .catch((err) => {
                 console.log(err)
@@ -46,7 +46,8 @@ export default function Organisme() {
         e.preventDefault();
         UserService.updateOrganisme(edite)
             .then((res) => {
-                console.log(res.data.message)
+                if (!res.data.message) Generator("error", res.data)
+                else Generator("success", res.data.message)
             })
             .catch((err) => {
                 console.log(err)
@@ -56,7 +57,8 @@ export default function Organisme() {
         e.preventDefault();
         UserService.deleteOrganisme(id)
             .then((res) => {
-                console.log(res.data.message)
+                if (!res.data.message) Generator("error", res.data)
+                else Generator("success", res.data.message)
             })
             .catch((err) => {
                 console.log(err)
