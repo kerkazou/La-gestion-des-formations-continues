@@ -32,6 +32,10 @@ const FormationToEmployee = async (req, res) => {
     const find_employee = await User.findById(body.employee)
     const find_formation = await Formation.findById(body.formation)
     if (!find_employee || !find_formation) throw Error('Emplotee or Formation is not exist')
+
+    const find_formation_employee = await User_formation.findOne({employee: find_employee._id, formation: find_formation._id})
+    if(find_formation_employee) throw Error("Is already assigned")
+
     const formation_employee = await User_formation.create({
         employee: find_employee._id,
         formation: find_formation._id
