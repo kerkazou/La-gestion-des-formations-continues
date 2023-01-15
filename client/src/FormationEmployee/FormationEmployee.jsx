@@ -42,6 +42,18 @@ export default function FormationEmployee() {
             })
     }
 
+    const onDelete = (id, e) => {
+        e.preventDefault();
+        UserService.deleteEmployeFormation(id)
+            .then((res) => {
+                if (!res.data.message) Generator("error", res.data)
+                else Generator("success", res.data.message)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
     return (
         <div className="container-fluid">
             <div className="row flex-nowrap">
@@ -59,18 +71,29 @@ export default function FormationEmployee() {
                         <table className="table table-sm table-responsive text-center">
                             <thead className="fs-5">
                                 <tr>
-                                    <th className="col-5">formation</th>
-                                    <th className="col-5">employee</th>
+                                    <th className="col-4">formation</th>
+                                    <th className="col-4">employee</th>
+                                    <th className="col-2"></th>
                                     <th className="col-2"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {formation_employee.map((f_e, i) => (
                                     <tr className="item" key={i}>
-                                        <td className="col-5">{f_e.employee[0].username}</td>
-                                        <td className="col-5">{f_e.formation[0].name}</td>
+                                        <td className="col-4">{f_e.employee[0].username}</td>
+                                        <td className="col-4">{f_e.formation[0].name}</td>
                                         <td className="col-2">
-                                            <i className="bi bi-trash3"></i>
+                                            {
+                                                ((new Date(f_e.formation[0].dateFin).getTime() < new Date().getTime())) ? 'Terminer'
+                                                    : ((new Date(f_e.formation[0].dateDebut).getTime() <= new Date().getTime()) && (new Date(f_e.formation[0].dateFin).getTime() >= new Date().getTime())) ? 'En coure'
+                                                        : (new Date(f_e.formation[0].dateDebut).getTime() > new Date().getTime()) ? 'En attente'
+                                                            : ''
+                                            }
+                                        </td>
+                                        <td className="col-2">
+                                            <div type='button' onClick={(e) => onDelete(f_e._id, e)}>
+                                                <i className="bi bi-trash3"></i>
+                                            </div>
                                         </td>
                                     </tr>
                                 ))}

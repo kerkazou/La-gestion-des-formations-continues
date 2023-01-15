@@ -26,7 +26,7 @@ function Add(props) {
                                     <option value={formation._id} key={i}>{formation.name}</option>
                                 ))}
                             </select>
-                            <label htmlFor='organisme'>Organisme</label>
+                            <label htmlFor='formation'>Formation</label>
                         </div>
                     </div>
                     <div className="modal-footer">

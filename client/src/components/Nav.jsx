@@ -2,7 +2,7 @@
 export default function Nav() {
     return (
         <div className="d-flex justify-content-between align-items-center text-light px-3" style={{ 'height': '8vh', 'borderRadius': '16px', 'background': '#2874A6' }}>
-            <div>Page/....</div>
+            <div>Page/ <span>{document.URL.split('/')[document.URL.split('/').length-1].replace('-', ' ')}</span></div>
             <div className="col-3 d-flex gap-3 justify-content-between align-items-center">
                 <div className="input-group flex-nowrap">
                     <span className="input-group-text"><i className="bi bi-search"></i></span>

@@ -19,10 +19,10 @@ const GetFormation = async (req, res) => {
         .populate('employee')
         .populate('formation')
     const role_employee = await Role.findOne({ name: 'Employee' })
-    const employee = await User.find({ roles: role_employee._id })
+    const employee = await User.find({ roles: role_employee._id, status: true })
         .populate('roles')
         .populate('organisme')
-    const formation = await Formation.find()
+    const formation = await Formation.find({ status: true })
     res.send({ formation_employee, employee, formation })
 }
 
@@ -40,6 +40,15 @@ const FormationToEmployee = async (req, res) => {
     res.json({ message: 'Successfully' })
 }
 
+const DeleteUserFormation = async (req, res) => {
+    const id = req.params.id
+    const find_user_formation = await User_formation.findById(id)
+    if (!find_user_formation) throw Error('User formation not existed')
+    const delete_user_formation = await User_formation.deleteOne({_id: id})
+    if (!delete_user_formation) throw Error('User formation not reset try again')
+    res.json({ message: 'Successfully, User formation is Reset' })
+}
+
 const MyFormation = async (req, res) => {
     const token = req.params.token
     const verify_token = await jwt.verify(token, process.env.TOKEN_KEY)
@@ -54,5 +63,6 @@ const MyFormation = async (req, res) => {
 module.exports = {
     GetFormation,
     FormationToEmployee,
+    DeleteUserFormation,
     MyFormation
 }

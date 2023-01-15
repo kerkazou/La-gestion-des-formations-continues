@@ -14,11 +14,7 @@ const User_formation = mongoose.model(
         type: mongoose.Schema.Types.ObjectId,
         ref: "Formation"
       }
-    ],
-    status: {
-      type: Boolean,
-      default: true
-    }
+    ]
   })
 );
 

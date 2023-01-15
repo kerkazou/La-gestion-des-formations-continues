@@ -30,6 +30,7 @@ router.get('/my-formation/:token', tryCatch(user_formationControllers.MyFormatio
 
 router.get('/formation-employee', tryCatch(user_formationControllers.GetFormation));
 router.post('/formation-to-employee', tryCatch(user_formationControllers.FormationToEmployee));
+router.delete('/delete-employe-formation/:id', tryCatch(user_formationControllers.DeleteUserFormation));
 
 router.use(errorHandller);
 
