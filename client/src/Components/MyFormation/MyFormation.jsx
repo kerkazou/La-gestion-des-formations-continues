@@ -39,16 +39,24 @@ export default function FormationEmployee() {
                     </div>
                 </div>
                 <div className="container-fluid pb-3">
-                    <div className="d-flex justify-content-center gap-3 px-3 py-5">
+                    <div className="d-flex flex-wrap justify-content-center gap-3 px-3 py-5">
                         {myformations.length == 0
                             ? "You don't have any formation naw."
                             : myformations.map((myformation, i) => (
-                                <div className="card col-3" key={i}>
-                                    <img src={myformation.formation[0].image} className="card-img-top" alt="..." />
+                                <div className="card col-lg-3 col-md-5 col-10 position-relative" key={i}>
+                                    <img src={myformation.formation[0].image} className="card-img-top" style={{ height: '200px' }} alt="..." />
                                     <div className="card-body">
-                                        <h5 className="card-title">{myformation.formation[0].name}</h5>
-                                        <h5 className="card-title">Date Debut: {myformation.formation[0].dateDebut}</h5>
-                                        <h5 className="card-title">Date Fin: {myformation.formation[0].dateFin}</h5>
+                                        <h4 className="card-title text-center fw-bold">{myformation.formation[0].name}</h4>
+                                        <div className="card-title"><span className='fw-bold'>Date Debut:</span> {myformation.formation[0].dateDebut}</div>
+                                        <div className="card-title"><span className='fw-bold'>Date Fin:</span> {myformation.formation[0].dateFin}</div>
+                                        <div className='position-absolute top-0 start-0 d-flex justify-content-center text-light py-2 px-3' style={{ transform: 'rotate(-45deg)', marginTop: '10px', marginLeft: '-20px', borderRadius: '16px', background: 'rgb(40, 116, 166)' }}>
+                                            {
+                                                ((new Date(myformation.formation[0].dateFin).getTime() < new Date().getTime())) ? 'Terminer'
+                                                    : ((new Date(myformation.formation[0].dateDebut).getTime() <= new Date().getTime()) && (new Date(myformation.formation[0].dateFin).getTime() >= new Date().getTime())) ? 'En coure'
+                                                        : (new Date(myformation.formation[0].dateDebut).getTime() > new Date().getTime()) ? 'En attente'
+                                                            : ''
+                                            }
+                                        </div>
                                     </div>
                                 </div>
                             ))}
