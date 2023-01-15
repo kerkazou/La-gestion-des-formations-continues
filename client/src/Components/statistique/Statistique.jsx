@@ -1,10 +1,10 @@
 import './style.css'
-import SidBar from '../childComponents/SidBar';
-import Nav from '../childComponents/Nav';
+import SidBar from '../../childComponents/SidBar';
+import Nav from '../../childComponents/Nav';
 import { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import UserService from "../services/user.service";
+import UserService from "../../services/user.service";
 
 export default function Statistique() {
 

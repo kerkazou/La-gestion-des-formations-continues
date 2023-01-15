@@ -1,10 +1,10 @@
 import './style.css'
-import SidBar from '../childComponents/SidBar';
-import Nav from '../childComponents/Nav';
+import SidBar from '../../childComponents/SidBar';
+import Nav from '../../childComponents/Nav';
 import { useEffect, useState } from 'react';
-import UserService from "../services/user.service";
-import Generator from '../Generator/Generator';
-import { Add } from '../Modals/ModalsFormationEmployee';
+import UserService from "../../services/user.service";
+import Generator from '../../Generator/Generator';
+import { Add } from '../../Modals/ModalsFormationEmployee';
 
 
 export default function FormationEmployee() {

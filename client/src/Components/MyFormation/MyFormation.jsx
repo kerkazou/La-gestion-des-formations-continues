@@ -1,9 +1,9 @@
 import './style.css'
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import UserService from "../services/user.service";
+import UserService from "../../services/user.service";
 import { Navigate } from 'react-router-dom'
-import { apiLogout } from "../actions/auth"
+import { apiLogout } from "../../actions/auth"
 
 
 export default function FormationEmployee() {

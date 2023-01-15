@@ -1,34 +1,41 @@
 import './style.css'
-import SidBar from '../childComponents/SidBar';
-import Nav from '../childComponents/Nav';
-import { useEffect, useState } from 'react';
-import UserService from "../services/user.service";
-import Generator from '../Generator/Generator';
-import { Add, Edite } from '../Modals/ModalsOrganisme';
+import SidBar from '../../childComponents/SidBar';
+import Nav from '../../childComponents/Nav';
+import { useState, useEffect } from 'react';
+import UserService from "../../services/user.service";
+import Generator from '../../Generator/Generator';
+import { Add, Edite } from '../../Modals/ModalsFormation';
 
+export default function Employee() {
 
-export default function Organisme() {
-
-    let [organismes, setOrganismes] = useState([])
+    let [formations, setFormation] = useState([])
     useEffect(() => {
-        UserService.getOrganisme()
+        UserService.getFormation()
             .then((res) => {
-                setOrganismes(res.data.organisme)
+                setFormation(res.data.formation)
             })
             .catch((err) => {
                 console.log(err)
             })
     }, []);
 
-    const [add, setAdd] = useState({ name: '' })
+    const [add, setAdd] = useState({ name: '', dateDebut: '', dateFin: '', image: '' })
     const onChange = (e) => {
-        const value = e.target.value
+        const value = e.target.value;
         setAdd({ ...add, [e.target.name]: value })
     }
-
+    const onChangeFile = (e) => {
+        const value = e.target.files[0];
+        setAdd({ ...add, [e.target.name]: value })
+    }
     const onSubmit = (e) => {
         e.preventDefault();
-        UserService.addOrganisme(add)
+        const formData = new FormData()
+        formData.append('name', add.name)
+        formData.append('dateDebut', add.dateDebut)
+        formData.append('dateFin', add.dateFin)
+        formData.append('image', add.image)
+        UserService.addFormation(formData)
             .then((res) => {
                 if (!res.data.message) Generator("error", res.data)
                 else Generator("success", res.data.message)
@@ -37,14 +44,24 @@ export default function Organisme() {
                 console.log(err)
             })
     }
-    const [edite, setEdite] = useState({ name: '' })
+
+    const [edite, setEdite] = useState({ name: '', dateDebut: '', dateFin: '', image: '' })
     const onChangeEdite = (e) => {
         const value = e.target.value;
         setEdite({ ...edite, [e.target.name]: value })
     }
+    const onChangeEditeFile = (e) => {
+        const value = e.target.files[0];
+        setEdite({ ...edite, [e.target.name]: value })
+    }
     const onSubmitEdite = (e) => {
         e.preventDefault();
-        UserService.updateOrganisme(edite)
+        const formData = new FormData()
+        formData.append('name', edite.name)
+        formData.append('dateDebut', edite.dateDebut)
+        formData.append('dateFin', edite.dateFin)
+        formData.append('image', edite.image)
+        UserService.updateformation(edite._id, formData)
             .then((res) => {
                 if (!res.data.message) Generator("error", res.data)
                 else Generator("success", res.data.message)
@@ -53,9 +70,10 @@ export default function Organisme() {
                 console.log(err)
             })
     }
+
     const onDelete = (id, e) => {
         e.preventDefault();
-        UserService.deleteOrganisme(id)
+        UserService.deleteFormation(id)
             .then((res) => {
                 if (!res.data.message) Generator("error", res.data)
                 else Generator("success", res.data.message)
@@ -73,30 +91,34 @@ export default function Organisme() {
                     <Nav />
                     <div className="container-fluid pb-3">
                         <div className="d-flex justify-content-between align-items-center px-3 py-2">
-                            <span className="fs-4 fw-bold">Organisme</span>
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#add_organisme" className="fs-3 fw-bold border-0 bg-body">
+                            <span className="fs-4 fw-bold">Formation</span>
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#add_formation" className="fs-3 fw-bold border-0 bg-body">
                                 <i className="bi bi-plus-circle-dotted"></i>
                             </button>
-                            <Add onSubmit={onSubmit} onChange={onChange} value={add.name} />
+                            <Add onSubmit={onSubmit} onChange={onChange} onChangeFile={onChangeFile} />
                         </div>
                         <table className="table table-sm table-responsive text-center">
                             <thead className="fs-5">
                                 <tr>
-                                    <th className="col-3">Numero</th>
+                                    <th className="col-3">Image</th>
                                     <th className="col-3">Name</th>
+                                    <th className="col-3">Date debut</th>
+                                    <th className="col-3">Date fin</th>
                                     <th className="col-2"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {organismes.map((organisme, i) => (
+                                {formations.map((formation, i) => (
                                     <tr className="item" key={i}>
-                                        <td className="col-3">{organisme._id}</td>
-                                        <td className="col-3">{organisme.name}</td>
+                                        <td className="col-3"><img className='col-3' src={formation.image} alt={formation.image} /></td>
+                                        <td className="col-3">{formation.name}</td>
+                                        <td className="col-3">{formation.dateDebut}</td>
+                                        <td className="col-3">{formation.dateFin}</td>
                                         <td className="col-2">
                                             <div className='d-flex gap-3'>
-                                                <i className="bi bi-pen" onClick={() => { setEdite(organisme) }} type="button" data-bs-toggle="modal" data-bs-target="#edite_organisme"></i>
-                                                <div type='button' onClick={(e) => onDelete(organisme._id, e)}>
-                                                    {(organisme.status)
+                                                <i className="bi bi-pen" type="button" onClick={() => { setEdite(formation) }} data-bs-toggle="modal" data-bs-target="#edite_formation"></i>
+                                                <div type='button' onClick={(e) => onDelete(formation._id, e)}>
+                                                    {(formation.status)
                                                         ? <i className="bi bi-trash3"></i>
                                                         : <i className="bi bi-arrow-clockwise"></i>
                                                     }
@@ -107,7 +129,7 @@ export default function Organisme() {
                                 ))}
                             </tbody>
                         </table>
-                        <Edite onSubmit={onSubmitEdite} onChange={onChangeEdite} value={edite.name} />
+                        <Edite onSubmit={onSubmitEdite} onChange={onChangeEdite} onChangeFile={onChangeEditeFile} value={edite} />
                     </div>
                 </div>
             </div>

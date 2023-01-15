@@ -1,14 +1,14 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { Provider } from "react-redux"
 import store from "./store"
-import Login from "./login/Login"
-import Statistique from "./statistique/Statistique"
-import Employee from "./Employee/Employee"
-import Organisme from "./Organisme/Organisme"
-import Formation from "./Formation/Formation"
-import FormationEmployee from "./FormationEmployee/FormationEmployee"
+import Login from "./Components/login/Login"
+import Statistique from "./Components/statistique/Statistique"
+import Employee from "./Components/Employee/Employee"
+import Organisme from "./Components/Organisme/Organisme"
+import Formation from "./Components/Formation/Formation"
+import FormationEmployee from "./Components/FormationEmployee/FormationEmployee"
 
-import MyFormation from "./MyFormation/MyFormation"
+import MyFormation from "./Components/MyFormation/MyFormation"
 
 
 export default function App() {

@@ -1,11 +1,11 @@
 import './style.css'
-import Input from '../childComponents/Input'
-import Label from '../childComponents/Label'
-import Button from '../childComponents/Button'
+import Input from '../../childComponents/Input'
+import Label from '../../childComponents/Label'
+import Button from '../../childComponents/Button'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { apiLogin } from "../actions/auth"
-import Generator from '../Generator/Generator'
+import { apiLogin } from "../../actions/auth"
+import Generator from '../../Generator/Generator'
 import { Navigate } from 'react-router-dom'
 
 export default function Login() {
