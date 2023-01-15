@@ -1,6 +1,6 @@
 import './style.css'
-import SidBar from '../components/SidBar';
-import Nav from '../components/Nav';
+import SidBar from '../childComponents/SidBar';
+import Nav from '../childComponents/Nav';
 import { useState, useEffect } from 'react';
 import UserService from "../services/user.service";
 import Generator from '../Generator/Generator';
