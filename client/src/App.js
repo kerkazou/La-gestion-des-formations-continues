@@ -10,7 +10,6 @@ import FormationEmployee from "./Components/FormationEmployee/FormationEmployee"
 
 import MyFormation from "./Components/MyFormation/MyFormation"
 
-
 export default function App() {
 
   return (
