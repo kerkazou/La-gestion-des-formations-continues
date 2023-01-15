@@ -23,7 +23,7 @@ const GetFormations = async (req, res) => {
 const AddFormation = async (req, res) => {
     const { body } = req
     if (!body.name || !body.dateDebut || !body.dateFin || !req.file) {
-        if (req.file) fs.unlinkSync('./public/' + req.file.filename)
+        if (req.file && (fs.existsSync('./public/' + req.file.filename))) fs.unlinkSync('./public/' + req.file.filename)
         throw Error('Fill the all fields')
     }
     if (await Formation.findOne({ name: body.name })) throw Error('Formation already exist')
@@ -47,7 +47,7 @@ const UpdateFormation = async (req, res) => {
     if (req.file) {
         file = find_formation.image.split('/')[find_formation.image.split('/').length - 1]
         const update_file_formation = await Formation.updateOne({ _id: id }, { ...body, image: `${req.protocol}://${req.get("host")}/${req.file.filename}` })
-        await fs.unlinkSync('./public/' + file)
+        if (fs.existsSync('./public/' + file)) await fs.unlinkSync('./public/' + file)
         if (!update_file_formation) throw Error('Formation not updated try again')
     }
     else {
