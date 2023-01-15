@@ -1,7 +1,7 @@
 import './style.css'
-import Input from '../components/Input'
-import Label from '../components/Label'
-import Button from '../components/Button'
+import Input from '../childComponents/Input'
+import Label from '../childComponents/Label'
+import Button from '../childComponents/Button'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { apiLogin } from "../actions/auth"
