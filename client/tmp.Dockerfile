@@ -1,13 +1,7 @@
 FROM node:16
-
-WORKDIR /app
-
+WORKDIR /client
 COPY package.json .
-
 RUN npm install
-
 COPY . .
-
 EXPOSE 3000
-
-CMD [ "node", "start" ]
+CMD [ "npm", "start" ]

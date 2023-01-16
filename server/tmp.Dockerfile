@@ -1,13 +1,7 @@
 FROM node:16
-
-WORKDIR /app
-
+WORKDIR /server
 COPY package.json .
-
 RUN npm install
-
 COPY . .
-
 EXPOSE 1111
-
-CMD [ "node", "start" ]
+CMD [ "node", "index.js" ]
