@@ -21,7 +21,7 @@ const AddOrganisme = async (req, res) => {
     const { body } = req
     if (!body.name) throw Error('Fill the all fields')
     const organisme = await Organisme.create({ name: body.name })
-    if (!organisme) throw Error('Formation not created try again')
+    if (!organisme) throw Error('Organisme not created try again')
     res.json({ message: 'Successfully, Organisme is created' })
 }
 
