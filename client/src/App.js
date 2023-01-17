@@ -9,6 +9,7 @@ import Formation from "./Components/Formation/Formation"
 import FormationEmployee from "./Components/FormationEmployee/FormationEmployee"
 
 import MyFormation from "./Components/MyFormation/MyFormation"
+import PageNotFound from "./Components/PageNotFound/PageNotFound"
 
 export default function App() {
 
@@ -26,7 +27,7 @@ export default function App() {
           {/* Dashboard Employee */}
           <Route path="/My-Formation" element={<MyFormation />} />
           {/* Page not found */}
-          <Route path="*" element={'Page not found'} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
     </Provider>
